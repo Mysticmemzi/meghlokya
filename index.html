@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeghLokya</title>
+
+<style>
+    body {
+        background: pink;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #screen1, #screen2, #screen3 {
+        display: none;
+        text-align: center;
+        padding: 20px;
+        color: #b3005f;
+    }
+    #screen1 {display: block;}
+
+    input {
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        width: 180px;
+        text-align: center;
+        font-size: 16px;
+        outline: none;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: none;
+        background: #ff4da6;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    button:hover {transform: scale(1.05);}
+
+    .heart {
+        position: fixed;
+        font-size: 22px;
+        animation: float 5s infinite;
+        opacity: 0.7;
+        color: red;
+    }
+    @keyframes float {
+        0% {transform: translateY(0);}
+        100% {transform: translateY(-800px);}
+    }
+
+    #typedText {
+        width: 80%;
+        margin: auto;
+        font-size: 18px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div id="screen1">
+    <h2>Type <b>meghlokya</b> to enter 💗</h2>
+    <input id="passwordInput" placeholder="Enter here">
+    <button onclick="checkPassword()">Enter</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2">
+    <h2>HEY MY TRILOKI 💞</h2>
+    <p>You are so special to me and I want you to feel it 💗</p>
+    <button onclick="goToLetter()">Continue ➜</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3">
+    <h2>Dear Trilokya 💌</h2>
+    <p id="typedText"></p>
+</div>
+
+<script>
+function checkPassword() {
+    let input = document.getElementById("passwordInput").value.toLowerCase();
+    if(input === "meghlokya"){
+        document.getElementById("screen1").style.display = "none";
+        document.getElementById("screen2").style.display = "block";
+    }else{
+        alert("Try again bestie 😗");
+    }
+}
+
+function goToLetter() {
+    document.getElementById("screen2").style.display = "none";
+    document.getElementById("screen3").style.display = "block";
+    typeLetter();
+}
+
+let message = `Trilokya, listen, I don’t even think u realise how much u mean to me. You came into my life like a blessing fr, and every single day I’m grateful for u. You’re this loud tomboy chaos of a girl but still the safest comfort I’ve ever had. You give the best advices, like the type that actually fixes my brain when I’m overthinking or doing dumb shit again. I’ve made so many stupid questionable decisions and instead of judging me or leaving, u stayed, held my hand and helped me get through it. You make me feel understood, supported, loved — all the things I was literally praying to have in a friend years ago. And now that I have u, I swear I don’t ever wanna lose u. Calls wid u are the highlight of my day, your stupid laugh, your loud voice, your chaos literally makes me laugh like an idiot. You light up my whole mood in seconds. I’d choose u over any guy, no debate. You don’t even know how special u are to me. You’re my person, my comfort, my happiness. U love K dramas and white boys and I find it so funny how serious u are abt that. You’re annoying sometimes, but you’re my annoying person and I love u for real. Don’t ever leave me okay, cuz I don’t think I can replace someone like u. People like u don’t come twice in life and I’m so lucky I met u.`;
+
+let i = 0;
+function typeLetter(){
+    if(i < message.length){
+        document.getElementById("typedText").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeLetter, 50);
+    }
+}
+
+// Floating hearts
+setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.fontSize = (Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+},400);
+</script>
+
+</body>
+</html>
